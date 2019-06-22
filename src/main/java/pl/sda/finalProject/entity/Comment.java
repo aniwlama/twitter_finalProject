@@ -24,7 +24,6 @@ public class Comment {
     private LocalDateTime deleteDate;
     @Column(name="user_id")
     private int userId;
-    //@Column(name="post_id")
     private int postId;
 
 

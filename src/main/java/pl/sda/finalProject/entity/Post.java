@@ -5,6 +5,7 @@ import lombok.Data;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,17 +15,19 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="post_id")
+    @NotNull
     private int postId;
     @Column(name="create_date")
+    @NotNull
     private LocalDateTime createDate;
+    @NotNull
     private String text;
     @Column(name="modify_date")
     private LocalDateTime modifyDate;
     @Column(name="delete_date")
     private LocalDateTime deleteDate;
-    //@Column(name="user_id")
+    @NotNull
     private int userId;
-    //@Column(name="comment_id")
     private int commentId;
 
 
@@ -33,8 +36,9 @@ public class Post {
     @JoinColumn (name = "user_id")
     private User user;
 
-/*    @OneToMany
-    @JoinColumn(name = "comment_id")*/
+    @OneToMany
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
 
 
 
