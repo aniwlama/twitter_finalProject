@@ -13,12 +13,18 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="post_id")
     private int postId;
+    @Column(name="create_date")
     private LocalDateTime createDate;
     private String text;
+    @Column(name="modify_date")
     private LocalDateTime modifyDate;
+    @Column(name="delete_date")
     private LocalDateTime deleteDate;
+    @Column(name="user_id")
     private int userId;
+    @Column(name="comment_id")
     private int commentId;
 
 
