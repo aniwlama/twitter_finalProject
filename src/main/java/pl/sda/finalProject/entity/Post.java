@@ -22,9 +22,9 @@ public class Post {
     private LocalDateTime modifyDate;
     @Column(name="delete_date")
     private LocalDateTime deleteDate;
-    @Column(name="user_id")
+    //@Column(name="user_id")
     private int userId;
-    @Column(name="comment_id")
+    //@Column(name="comment_id")
     private int commentId;
 
 

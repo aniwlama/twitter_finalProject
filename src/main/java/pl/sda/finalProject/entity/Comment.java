@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 public class Comment {
 
-    //dodac anotacje do column name
+    //dodac login? zeby wyswietlalo kto napisal post/komentarz
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="comment_id")
@@ -24,7 +24,7 @@ public class Comment {
     private LocalDateTime deleteDate;
     @Column(name="user_id")
     private int userId;
-    @Column(name="post_id")
+    //@Column(name="post_id")
     private int postId;
 
 
