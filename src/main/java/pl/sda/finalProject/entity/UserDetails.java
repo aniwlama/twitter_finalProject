@@ -1,12 +1,13 @@
 package pl.sda.finalProject.entity;
 
 import lombok.Data;
-import lombok.NonNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
@@ -24,9 +25,10 @@ public class UserDetails {
     private String surname;
     @NotNull
     private String email;
-    @Column(name="birth_date")
+   /* @Column(name="birth_date")
     @NotNull
-    private LocalDate birthDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date birthDate;*/
     @Column(name="join_date")
     private LocalDateTime joinDate;
 

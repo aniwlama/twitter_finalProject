@@ -27,7 +27,7 @@ public class User {
     private LocalDateTime blockedDate;
     @Column(name="unblocked_date")
     private LocalDateTime unblockedDate;
-    private int userDetailsId; //FK
+
 
 
     @OneToOne(cascade = CascadeType.ALL)

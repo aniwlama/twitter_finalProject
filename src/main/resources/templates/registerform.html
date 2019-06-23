@@ -19,22 +19,24 @@
     <p>Password:
     <input type="text" th:field="*{password}"/>
     </p>
-<!--    <p>Name:
-        <input type="text" th:field="*{name}"/>
+    <p>Name:
+        <input type="text" th:field="*{userDetailsDto.name}"/>
     </p>
     <p>Surname:
-        <input type="text" th:field="*{surname}"/>
+        <input type="text" th:field="*{userDetailsDto.surname}"/>
     </p>
     <p>Email:
-        <input type="text" th:field="*{email}"/>
+        <input type="text" th:field="*{userDetailsDto.email}"/>
     </p>
-    <p>Birth date:
-        <input type="text" th:field="*{birthDate}"/>
+   <!-- <p>Birth date:
+        <input type="date" th:field="*{userDetailsDto.birthDate}"/>
     </p>-->
+
     <p>
         <input type="submit" value="Submit"/>
         <input type="reset" value="Reset"/>
     </p>
+
 
 </form>
 </body>

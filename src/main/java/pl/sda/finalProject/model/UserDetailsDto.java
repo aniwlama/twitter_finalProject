@@ -1,9 +1,7 @@
 package pl.sda.finalProject.model;
 
-import lombok.Data;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 public class UserDetailsDto {
@@ -15,7 +13,7 @@ public class UserDetailsDto {
 
     private String email;
 
-    private LocalDate birthDate;
+    private Date birthDate;
 
     private LocalDateTime joinDate;
 
@@ -45,11 +43,11 @@ public class UserDetailsDto {
         this.email = email;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
