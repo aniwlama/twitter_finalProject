@@ -1,0 +1,69 @@
+drop database if exists finalproject;
+CREATE DATABASE finalProject;
+USE finalProject;
+
+drop table if exists user;
+CREATE TABLE IF NOT EXISTS USER (
+`user_id` bigint not null auto_increment primary key,
+`login` varchar(20) not null unique,
+`password` varchar(50) not null,
+`role` varchar(10) not null,
+`blocked_date` timestamp,
+`unblocked_date` timestamp,
+`user_details_id` bigint);
+
+drop table if exists user_details;
+CREATE TABLE IF NOT EXISTS USER_DETAILS(
+`user_details_id` bigint not null auto_increment primary key,
+`name` varchar (50) not null,
+`surname` varchar (50) not null,
+`email` varchar (50) not null,
+`birth_date` date not null,
+`join_date` timestamp);
+
+drop table if exists post;
+CREATE TABLE IF NOT EXISTS POST(
+`post_id` bigint not null auto_increment primary key,
+`create_date` date not null,
+`text` varchar(100) not null,
+`modify_date` timestamp,
+`delete_date` timestamp,
+`user_id` bigint not null,
+`comment_id` bigint);
+
+drop table if exists comment;
+CREATE TABLE IF NOT EXISTS COMMENT(
+`comment_id` bigint not null auto_increment primary key,
+`create_date` timestamp,
+`text` varchar(100) not null,
+`modify_date` timestamp,
+`delete_date` timestamp,
+`user_id` bigint,
+`post_id` bigint);
+
+/* dodawanie foreignKey user_id*/
+alter table `post`
+add constraint `post_user_fk` foreign key (`user_id`) references `user`(`user_id`);
+alter table `comment`
+add constraint `comment_user_fk` foreign key (`user_id`) references `user`(`user_id`);
+
+/* dodawanie foreignKey user_details_id*/
+alter table `user`
+add constraint `user_details_user_fk` foreign key (`user_details_id`) references `user_details`(`user_details_id`);
+
+/* dodawaie foreingKey post_id */
+alter table `comment`
+add constraint `comment_post_fk` foreign key (`post_id`) references `post`(`post_id`);
+
+/* dodawaie foreingKey comment_id */
+alter table `post`
+add constraint `post_comment_fk` foreign key (`comment_id`) references `comment`(`comment_id`);
+
+
+
+
+
+
+
+
+

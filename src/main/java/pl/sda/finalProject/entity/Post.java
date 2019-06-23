@@ -36,9 +36,9 @@ public class Post {
     @JoinColumn (name = "user_id")
     private User user;
 
-    @OneToMany
+/*    @OneToMany
     @JoinColumn(name = "comment_id")
-    private Comment comment;
+    private Comment comment;*/
 
 
 

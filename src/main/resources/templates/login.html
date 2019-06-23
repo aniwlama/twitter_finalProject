@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns="http:/>/www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>LogIn</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+
+<body align="center">
+
+
+<form th:action="@{/login-process}" method="post">
+    <p style="color: darkred;" th:if="${param.error}" th:text="'Login or password is incorrect'">
+
+    </p>
+
+    <h3>Welcome! Please enter your credentials: </h3>
+    <label for="inputLogin">Login: </label>
+    <input type="text" id="inputLogin"
+           th:required="required"
+           placeholder="Insert login" name="login"/>
+
+    <label for="inputPassword">Password: </label>
+    <input type="password" id="inputPassword" th:required="required"
+           placeholder="Insert password" name="password"/>
+
+    <button type="submit">Login</button>
+
+</form>
+
+<h3>Don't have an account?</h3>
+<form action="/registerform">
+    <button class="btn btn-success" type="submit"> Register </button>
+</form>
+
+
+</body>
+</html>
