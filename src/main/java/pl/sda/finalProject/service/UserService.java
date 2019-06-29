@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import pl.sda.finalProject.entity.User;
+import pl.sda.finalProject.exceptions.UnsupportedExceptions;
 import pl.sda.finalProject.model.Roles;
 import pl.sda.finalProject.model.UserDetailsDto;
 import pl.sda.finalProject.model.UserDto;
@@ -43,23 +44,33 @@ public class UserService {
         //loginAvailability(userDto);
 
         userDto.setRole(Roles.USER);
-       /*  setting join date automatically - works! Pattern needed to be added to the entity*/
-        UserDetailsDto userDetailsDto = userDto.getUserDetailsDto();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String newDateFormat = sdf.format(new Date());
-        userDetailsDto.setJoinDate(sdf.parse(newDateFormat));
-        userDto.setUserDetailsDto(userDetailsDto);
+       /*  setting join date automatically - works! Pattern needed to be added to the entity dto*/
+        prepareJoinDate(userDto);
+
 
         User userToSave = modelMapper.map(userDto, User.class);
         userRepository.save(userToSave);
     }
 
-    /*public String loginAvailability (UserDto userDto){
+    private void prepareJoinDate(UserDto userDto) throws ParseException {
+        UserDetailsDto userDetailsDto = userDto.getUserDetailsDto();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String newDateFormat = sdf.format(new Date());
 
-        if (userRepository.countByLogin(userDto.getLogin()) != 0) {
-
+        try{
+            userDetailsDto.setJoinDate(sdf.parse(newDateFormat));
+        } catch (ParseException e){
+            e.printStackTrace();
+            throw new UnsupportedExceptions(e.getMessage());
         }
-        return "errorLogin";
-    }*/
+    }
+
+    public boolean loginAvailability (UserDto userDto){
+
+        if(userRepository.countByLogin(userDto.getLogin()) == 0){
+            return true;
+        }
+      return false;
+    }
 
 }

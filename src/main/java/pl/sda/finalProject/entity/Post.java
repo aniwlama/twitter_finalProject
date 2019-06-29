@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -26,19 +27,15 @@ public class Post {
     private LocalDateTime modifyDate;
     @Column(name="delete_date")
     private LocalDateTime deleteDate;
-    @NotNull
-    private int userId;
-    private int commentId;
-
 
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "user_id")
     private User user;
 
-/*    @OneToMany
-    @JoinColumn(name = "comment_id")
-    private Comment comment;*/
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="comment_id")
+    private List<Comment> comments;
 
 
 

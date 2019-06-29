@@ -24,13 +24,12 @@ public class Comment {
     private LocalDateTime deleteDate;
     @Column(name="user_id")
     private int userId;
-    private int postId;
+
 
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "post_id")
     private Post post;
-
 
 
 

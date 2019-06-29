@@ -20,6 +20,8 @@ import java.text.ParseException;
 @Controller
 public class RegisterFormController {
 
+    //dodac try catch na rozne wyjatki
+
     @Autowired
     private UserService userService;
 
@@ -30,6 +32,12 @@ public class RegisterFormController {
 
     @PostMapping("/registeruser")
     public String registerUser(@ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) throws ParseException {
+
+        try{
+            userService.loginAvailability(userDto);
+        } catch (RuntimeException e) {
+            return "errorLogin";
+        }
         userService.saveUser(userDto,bindingResult);
         return "userRegisterSuccess";
     }
