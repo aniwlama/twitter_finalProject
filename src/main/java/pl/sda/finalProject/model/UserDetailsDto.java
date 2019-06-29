@@ -1,6 +1,5 @@
 package pl.sda.finalProject.model;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -15,7 +14,7 @@ public class UserDetailsDto {
 
     private Date birthDate;
 
-    private LocalDateTime joinDate;
+    private Date joinDate;
 
 
 
@@ -51,11 +50,11 @@ public class UserDetailsDto {
         this.birthDate = birthDate;
     }
 
-    public LocalDateTime getJoinDate() {
+    public Date getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(LocalDateTime joinDate) {
+    public void setJoinDate(Date joinDate) {
         this.joinDate = joinDate;
     }
 }

@@ -6,7 +6,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -25,12 +24,13 @@ public class UserDetails {
     private String surname;
     @NotNull
     private String email;
-   /* @Column(name="birth_date")
-    @NotNull
+    @Column(name="birth_date")
+    //@NotNull
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date birthDate;*/
+    private Date birthDate;
     @Column(name="join_date")
-    private LocalDateTime joinDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private Date joinDate;
 
 
 }

@@ -10,6 +10,8 @@ import pl.sda.finalProject.repository.UserRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -27,11 +29,18 @@ public class UserService {
 
     }
 
-    public void saveUser(UserDto userDto) {
+    public void saveUser(UserDto userDto) throws ParseException {
         userDto.setRole("USER");
 
+        // setting join date automatically - works! Pattern needed to be added to the entity
+        UserDetailsDto userDetailsDto = userDto.getUserDetailsDto();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String newDateFormat = sdf.format(new Date());
+        userDetailsDto.setJoinDate(sdf.parse(newDateFormat));
+        userDto.setUserDetailsDto(userDetailsDto);
+        //
         User userToSave = modelMapper.map(userDto, User.class);
         userRepository.save(userToSave);
-
     }
+
 }

@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 
 public class UserDto {
 
-    @Size(min = 3, max = 20, message = "Username should be between 3 and 20 characters")
+    //@Size(min = 3, max = 20, message = "Username should be between 3 and 20 characters")
     private String login;
-    @Size(min = 3, max = 30, message = "Password should be between 3 and 30 characters")
+    //@Size(min = 3, max = 30, message = "Password should be between 3 and 30 characters")
     private String password;
     private String role;
     private UserDetailsDto userDetailsDto;
