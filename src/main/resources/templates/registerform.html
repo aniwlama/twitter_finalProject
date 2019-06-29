@@ -9,10 +9,10 @@
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
-<body>
-
+<body align="center">
 
 <form th:action="@{/registeruser}" method = "post" th:object="${userToRegister}">
+
     <p>Login:
     <input type="text" th:field="*{login}"/>
     </p>

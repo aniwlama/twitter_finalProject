@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.sda.finalProject.model.UserDto;
 import pl.sda.finalProject.service.UserService;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 
 
@@ -27,9 +29,8 @@ public class RegisterFormController {
     }
 
     @PostMapping("/registeruser")
-    public String registerUser(@ModelAttribute UserDto userDto) throws ParseException {
-        System.out.println("ble");
-        userService.saveUser(userDto);
+    public String registerUser(@ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) throws ParseException {
+        userService.saveUser(userDto,bindingResult);
         return "userRegisterSuccess";
     }
 

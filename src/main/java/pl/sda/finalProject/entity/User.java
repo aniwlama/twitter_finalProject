@@ -1,6 +1,7 @@
 package pl.sda.finalProject.entity;
 
 import lombok.Data;
+import pl.sda.finalProject.model.Roles;
 
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class User {
     @NotNull
     private String password;
     @NotNull
-    private String role;
+    private Roles role;
     @Column(name="blocked_date")
     private LocalDateTime blockedDate;
     @Column(name="unblocked_date")
