@@ -25,11 +25,11 @@ public class UserDetails {
     @NotNull
     private String email;
     @Column(name="birth_date")
-    //@NotNull
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+   //@DateTimeFormat(pattern = "yyyy-MM-dd") didn't work, annotation added to getter/object in UserDetailsDto!!
+    @NotNull
     private Date birthDate;
     @Column(name="join_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date joinDate;
 
 

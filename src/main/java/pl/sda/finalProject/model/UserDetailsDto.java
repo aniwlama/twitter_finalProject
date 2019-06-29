@@ -1,5 +1,7 @@
 package pl.sda.finalProject.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 
@@ -12,6 +14,7 @@ public class UserDetailsDto {
 
     private String email;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
 
     private Date joinDate;
@@ -41,6 +44,7 @@ public class UserDetailsDto {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     public Date getBirthDate() {
         return birthDate;

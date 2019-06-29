@@ -28,7 +28,7 @@ public class RegisterFormController {
 
     @PostMapping("/registeruser")
     public String registerUser(@ModelAttribute UserDto userDto) throws ParseException {
-
+        System.out.println("ble");
         userService.saveUser(userDto);
         return "userRegisterSuccess";
     }
