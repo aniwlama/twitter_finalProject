@@ -11,7 +11,21 @@
 </head>
 
 
-<body>
+<body align="center">
+
+<form th:action="@{/addpost}" method="post" th:object="${postToSave}">
+
+    <p>Post:
+        <input type="text" th:field="*{text}"/>
+    </p>
+
+    <p>
+        <input type="submit" value="Add post"/>
+        <input type="reset" value="Delete"/>
+    </p>
+
+
+</form>
 
 
 

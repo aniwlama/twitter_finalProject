@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Post {
     private int postId;
     @Column(name="create_date")
     @NotNull
-    private LocalDateTime createDate;
+    private Date createDate;
     @NotNull
     private String text;
     @Column(name="modify_date")
@@ -37,6 +38,7 @@ public class Post {
     @JoinColumn(name="comment_id")
     private List<Comment> comments;
 
-
-
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

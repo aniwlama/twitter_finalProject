@@ -22,8 +22,16 @@ public class RegisterFormController {
 
     //dodac try catch na rozne wyjatki
 
+
     @Autowired
     private UserService userService;
+
+
+    @RequestMapping("/registerform")
+    public String registerform(Model model) {
+        model.addAttribute("userToRegister", new UserDto());
+        return "registerform";
+    }
 
     @GetMapping("/registeruser")
     public ModelAndView registerUser(){
@@ -33,19 +41,15 @@ public class RegisterFormController {
     @PostMapping("/registeruser")
     public String registerUser(@ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) throws ParseException {
 
-        try{
+       /* try{
             userService.loginAvailability(userDto);
         } catch (RuntimeException e) {
             return "errorLogin";
-        }
+        }*/
         userService.saveUser(userDto,bindingResult);
         return "userRegisterSuccess";
     }
 
-    @RequestMapping("/registerform")
-    public String registerform(Model model) {
-        model.addAttribute("userToRegister", new UserDto());
-        return "registerform";
-    }
+
 
 }

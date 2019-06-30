@@ -24,6 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .hasAnyAuthority("ADMIN", "USER")
                 .antMatchers("/")
                     .hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/addpost")
+                    .hasAnyAuthority("USER", "ADMIN")
                /* .antMatchers("/login")
                     .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")*/ // nie moze byc, bo kazdy powinien moc to zobaczyc
                 .anyRequest()
@@ -66,5 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     }
+
+
 
 }

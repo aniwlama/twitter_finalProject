@@ -2,6 +2,8 @@ package pl.sda.finalProject.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import pl.sda.finalProject.entity.User;
@@ -31,7 +33,7 @@ public class UserService {
 
     }
 
-    public void saveUser(UserDto userDto, BindingResult bindingResult) throws ParseException {
+    public void saveUser(UserDto userDto, BindingResult bindingResult){
 
 
         Validator.validateExceptions(bindingResult);
@@ -65,12 +67,21 @@ public class UserService {
         }
     }
 
-    public boolean loginAvailability (UserDto userDto){
+    /*to set a separate page for each error that might occurred during registration process*/
+    /*public boolean loginAvailability (UserDto userDto){
 
         if(userRepository.countByLogin(userDto.getLogin()) == 0){
             return true;
         }
       return false;
+    }*/
+
+    /*to check which user is currently logged in*/
+    public User getActiveUser (){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        /*UserDetails i getUsername są Springowe*/
+        return userRepository.findUserByLogin(((UserDetails)principal).getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
 }
