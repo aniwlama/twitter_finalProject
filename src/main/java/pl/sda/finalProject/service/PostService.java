@@ -4,14 +4,16 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.finalProject.entity.Post;
+import pl.sda.finalProject.entity.User;
 import pl.sda.finalProject.exceptions.UnsupportedExceptions;
 import pl.sda.finalProject.model.PostDto;
-import pl.sda.finalProject.model.UserDto;
 import pl.sda.finalProject.repository.PostRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -45,10 +47,14 @@ public class PostService {
 
     public void savePost(PostDto postDto){
         postDto.setCreateDate(dateFormatter());
-        Post postToSave = modelMapper.map(postDto, Post.class);
+        Post postCreate = modelMapper.map(postDto, Post.class);
         /*ustawienie aktywnego użytkownika*/
-        postToSave.setUser(userService.getActiveUser());
-        postRepository.save(postToSave);
+        postCreate.setUser(userService.getActiveUser());
+        postRepository.save(postCreate);
+
+    }
+
+
 
     }
 
@@ -56,4 +62,4 @@ public class PostService {
 
 
 
-}
+

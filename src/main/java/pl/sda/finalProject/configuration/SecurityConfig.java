@@ -21,11 +21,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity.authorizeRequests()
                 .antMatchers("/index/**")
-                    .hasAnyAuthority("ADMIN", "USER")
+                    .hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .antMatchers("/")
-                    .hasAnyAuthority("USER", "ADMIN")
+                    .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/addpost")
-                    .hasAnyAuthority("USER", "ADMIN")
+                    .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .antMatchers("/posts")
+                    .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                /* .antMatchers("/login")
                     .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")*/ // nie moze byc, bo kazdy powinien moc to zobaczyc
                 .anyRequest()

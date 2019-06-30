@@ -45,7 +45,7 @@ public class UserService {
 
         //loginAvailability(userDto);
 
-        userDto.setRole(Roles.USER);
+        userDto.setRole(Roles.ROLE_USER);
        /*setting join date automatically - works! Pattern needed to be added to the entity dto*/
         prepareJoinDate(userDto);
 
