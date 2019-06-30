@@ -26,6 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/addpost")
                     .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .antMatchers("/postList")
+                    .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/posts")
                     .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                /* .antMatchers("/login")
@@ -41,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .passwordParameter("password")
                     .loginProcessingUrl("/login-process")
                     .failureUrl("/login?error")
-                    .defaultSuccessUrl("/index")
+                    .defaultSuccessUrl("/postList")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login");

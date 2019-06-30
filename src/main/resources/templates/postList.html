@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns="http:/>/www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>AllPosts</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+
+
+<body align="center">
+
+<table align="center">
+    <thead>
+    <th>Login</th>
+    <th>Creation date</th>
+    <th>Text</th>
+    <th></th>
+    <th></th>
+    <th></th>
+
+    </thead>
+
+    <tbody>
+    <tr th:each="post: ${allPosts}">
+        <td th:text="${post.user.login}"></td> <!--musza sie nazwy zgadzac! bo inaczej mapper swiruje-->
+        <td th:text="${post.createDate}"></td>
+        <td th:text="${post.text}"></td>
+
+        <div th:switch="${post.user.login}">
+        <form action="#" method="post" th:object="${post}">
+            <td><button value="remove">Remove post</button></td>
+        </form>
+        <form action="#" method="post" th:object="${post}">
+            <td><button value="save">Modify comment</button></td>
+        </form>
+        </div>
+        <form action="#" method="post" th:object="${post}">
+            <td><button value="submit">Show comments</button></td>
+        </form>
+        <form action="#" method="post" th:object="${post}">
+            <td><button value="save">Add comment</button></td>
+        </form>
+    </tr>
+    </tbody>
+</table>
+
+<form action="/index">
+    <button class="btn btn-success" type="submit"> Add more </button>
+</form>
+
+</body>
+</html>

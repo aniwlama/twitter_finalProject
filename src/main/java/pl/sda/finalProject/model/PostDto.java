@@ -11,14 +11,14 @@ public class PostDto {
     private String text;
     private Date modifyDate;
     private Date deleteDate;
-    private UserDto userDto;
+    private UserDto user;
 
-    public UserDto getUserDto() {
-        return userDto;
+    public UserDto getUser() {
+        return user;
     }
 
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
+    public void setUser(UserDto user) {
+        this.user = user;
     }
 
     public Date getCreateDate() {

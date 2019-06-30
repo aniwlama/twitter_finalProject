@@ -37,6 +37,15 @@ public class PostController {
     public String savePost(@ModelAttribute PostDto postDto){
         postService.savePost(postDto);
         return "postAddedSuccess";
+
+    }
+
+    @GetMapping("/posts")
+    public String showAllPosts(Model model){
+        List<PostDto> posts = postService.getAllPosts();
+        model.addAttribute("allPosts", posts);
+
+        return "postList";
     }
 
 

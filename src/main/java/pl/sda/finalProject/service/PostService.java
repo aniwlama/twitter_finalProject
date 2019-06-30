@@ -2,6 +2,7 @@ package pl.sda.finalProject.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Service;
 import pl.sda.finalProject.entity.Post;
 import pl.sda.finalProject.entity.User;
@@ -52,6 +53,14 @@ public class PostService {
         postCreate.setUser(userService.getActiveUser());
         postRepository.save(postCreate);
 
+    }
+
+    public List<PostDto> getAllPosts(){
+        List<Post> posts = postRepository.findAll();
+
+        return  posts.stream()
+                .map(p -> modelMapper.map(p, PostDto.class))
+                .collect(Collectors.toList());
     }
 
 
