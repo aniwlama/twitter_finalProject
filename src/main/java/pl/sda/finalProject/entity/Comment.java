@@ -22,10 +22,12 @@ public class Comment {
     private LocalDateTime modifyDate;
     @Column(name="delete_date")
     private LocalDateTime deleteDate;
-    @Column(name="user_id")
-    private int userId;
 
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "post_id")

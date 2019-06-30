@@ -44,7 +44,7 @@ public class UserService {
         //loginAvailability(userDto);
 
         userDto.setRole(Roles.USER);
-       /*  setting join date automatically - works! Pattern needed to be added to the entity dto*/
+       /*setting join date automatically - works! Pattern needed to be added to the entity dto*/
         prepareJoinDate(userDto);
 
 
@@ -52,7 +52,7 @@ public class UserService {
         userRepository.save(userToSave);
     }
 
-    private void prepareJoinDate(UserDto userDto) throws ParseException {
+    private void prepareJoinDate(UserDto userDto) {
         UserDetailsDto userDetailsDto = userDto.getUserDetailsDto();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String newDateFormat = sdf.format(new Date());

@@ -21,9 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity.authorizeRequests()
                 .antMatchers("/index/**")
-                    .hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                    .hasAnyAuthority("ADMIN", "USER")
                 .antMatchers("/")
-                    .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                    .hasAnyAuthority("USER", "ADMIN")
                /* .antMatchers("/login")
                     .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")*/ // nie moze byc, bo kazdy powinien moc to zobaczyc
                 .anyRequest()
