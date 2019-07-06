@@ -35,9 +35,9 @@ public class PostService {
         String newDateFormat = sdf.format(new Date());
         Date dateFormatted;
 
-        try{
-             dateFormatted = sdf.parse(newDateFormat);
-        } catch(ParseException e){
+        try {
+            dateFormatted = sdf.parse(newDateFormat);
+        } catch (ParseException e) {
             e.printStackTrace();
             throw new UnsupportedExceptions(e.getMessage());
         }
@@ -46,7 +46,7 @@ public class PostService {
 
     }
 
-    public void savePost(PostDto postDto){
+    public void savePost(PostDto postDto) {
         postDto.setCreateDate(dateFormatter());
         Post postCreate = modelMapper.map(postDto, Post.class);
         /*ustawienie aktywnego użytkownika*/
@@ -55,30 +55,47 @@ public class PostService {
 
     }
 
-    public List<PostDto> getAllPosts(){
+    public List<PostDto> getAllPosts() {
 
         List<Post> posts = postRepository.findAll();
 
-        return  posts.stream()
+        return posts.stream()
                 .map(p -> modelMapper.map(p, PostDto.class))
                 .collect(Collectors.toList());
 
     }
 
-    public void removePost(PostDto postDto){
+    public void removePost(PostDto postDto) {
+
 
         Post postToDelete = postRepository
                 .findPostByPostId(postDto.getPostId())
-                .orElseThrow(()-> new RuntimeException("Post not found!"));
+                .orElseThrow(() -> new RuntimeException("Post not found!"));
         postToDelete.setDeleteDate(dateFormatter());
 
-        postRepository.save(postToDelete);
+        String userCurrentlyLogged = userService.getActiveUser().getLogin();
+        String postUser = postToDelete.getUser().getLogin();
+
+        if(userCurrentlyLogged.equals(postUser)){
+            postRepository.save(postToDelete);
+        } else {
+            throw new RuntimeException("You can't delete someone else post!");
+        }
+
+        /*try{
+            userCurrentlyLogged.equals(postUser);
+
+        } catch(Exception e){
+            e.printStackTrace();
+            throw new UnsupportedExceptions(e.getMessage());
+        }*/
+
+
 
     }
 
 
-
-    }
+}
 
 
 
