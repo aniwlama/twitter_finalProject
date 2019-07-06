@@ -3,6 +3,7 @@ package pl.sda.finalProject.controller;
 import javafx.geometry.Pos;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.sda.finalProject.entity.Post;
 import pl.sda.finalProject.model.PostDto;
 import pl.sda.finalProject.service.PostService;
+import pl.sda.finalProject.service.UserService;
 
 import java.util.List;
 
@@ -18,6 +20,9 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = {"/", "/index"})
     public String addPost(Model model){
@@ -41,6 +46,8 @@ public class PostController {
     public String showAllPosts(Model model){
         List<PostDto> posts = postService.getAllPosts();
         model.addAttribute("allPosts", posts);
+        String activeLogin = userService.getActiveUser().getLogin();
+        model.addAttribute("activeLogin",activeLogin);
         return "postList";
     }
 

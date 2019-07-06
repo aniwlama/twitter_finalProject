@@ -30,10 +30,16 @@
             <td th:text="${post.user.login}"></td> <!--musza sie nazwy zgadzac! bo inaczej mapper swiruje-->
             <td th:text="${post.createDate}"></td>
             <td th:text="${post.text}"></td>
-            <td>
+            <div th:switch="${post.user.login}">
+            <td th:case="${activeLogin}">
                 <input type="hidden" name="postId" th:value="${post.postId}"/>
                 <button value="remove">Remove post</button>
             </td>
+                <td th:case="*">
+
+                </td>
+            </div>
+
 
         </form>
 
