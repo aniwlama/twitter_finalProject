@@ -2,19 +2,21 @@ package pl.sda.finalProject.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Service;
 import pl.sda.finalProject.entity.Post;
-import pl.sda.finalProject.entity.User;
 import pl.sda.finalProject.exceptions.UnsupportedExceptions;
 import pl.sda.finalProject.model.PostDto;
 import pl.sda.finalProject.repository.PostRepository;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparing;
 
 @Service
 public class PostService {
@@ -60,6 +62,7 @@ public class PostService {
         List<Post> posts = postRepository.findAll();
 
         return posts.stream()
+                .sorted((id1, id2)->Long.compare(id2.getPostId(),id1.getPostId()))
                 .map(p -> modelMapper.map(p, PostDto.class))
                 .collect(Collectors.toList());
 
@@ -79,18 +82,8 @@ public class PostService {
         if(userCurrentlyLogged.equals(postUser)){
             postRepository.save(postToDelete);
         } else {
-            throw new RuntimeException("You can't delete someone else post!");
+            throw new RuntimeException("You can't delete someone's else post!");
         }
-
-        /*try{
-            userCurrentlyLogged.equals(postUser);
-
-        } catch(Exception e){
-            e.printStackTrace();
-            throw new UnsupportedExceptions(e.getMessage());
-        }*/
-
-
 
     }
 
