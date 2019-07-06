@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @EnableWebSecurity
@@ -15,6 +15,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
@@ -60,13 +63,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         authentication.inMemoryAuthentication()
                 .withUser("admin")
-                    .password("adminowe")
-                    .roles("ADMIN");
+                    .password(passwordEncoder.encode("password"))
+                    .roles("ADMIN")
+                .and()
+                .passwordEncoder(passwordEncoder);
 
         authentication.jdbcAuthentication()
                 .usersByUsernameQuery(queryPassword)
                 .authoritiesByUsernameQuery(queryRole)
-                .dataSource(jdbcTemplate.getDataSource());
+                .dataSource(jdbcTemplate.getDataSource())
+                .passwordEncoder(passwordEncoder);
 
 
 

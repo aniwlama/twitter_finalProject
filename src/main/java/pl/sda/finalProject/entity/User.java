@@ -46,4 +46,75 @@ public class User {
     private List<Comment> comments;
 
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public LocalDateTime getBlockedDate() {
+        return blockedDate;
+    }
+
+    public void setBlockedDate(LocalDateTime blockedDate) {
+        this.blockedDate = blockedDate;
+    }
+
+    public LocalDateTime getUnblockedDate() {
+        return unblockedDate;
+    }
+
+    public void setUnblockedDate(LocalDateTime unblockedDate) {
+        this.unblockedDate = unblockedDate;
+    }
+
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }

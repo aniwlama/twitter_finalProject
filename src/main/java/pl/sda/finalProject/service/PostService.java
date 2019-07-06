@@ -56,11 +56,13 @@ public class PostService {
     }
 
     public List<PostDto> getAllPosts(){
+
         List<Post> posts = postRepository.findAll();
 
         return  posts.stream()
                 .map(p -> modelMapper.map(p, PostDto.class))
                 .collect(Collectors.toList());
+
     }
 
 
