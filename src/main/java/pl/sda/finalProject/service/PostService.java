@@ -65,6 +65,17 @@ public class PostService {
 
     }
 
+    public void removePost(PostDto postDto){
+
+        Post postToDelete = postRepository
+                .findPostByPostId(postDto.getPostId())
+                .orElseThrow(()-> new RuntimeException("Post not found!"));
+        postToDelete.setDeleteDate(dateFormatter());
+
+        postRepository.save(postToDelete);
+
+    }
+
 
 
     }

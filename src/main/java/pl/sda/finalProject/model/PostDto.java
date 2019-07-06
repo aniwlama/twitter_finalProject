@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class PostDto {
 
+    private int postId;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private Date createDate;
     private String text;
@@ -52,5 +53,13 @@ public class PostDto {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
     }
 }

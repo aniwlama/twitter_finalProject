@@ -39,7 +39,7 @@ public class RegisterFormController {
     }
 
     @PostMapping("/registeruser")
-    public String registerUser(@ModelAttribute @Valid UserDto userDto, BindingResult bindingResult) throws ParseException {
+    public String registerUser(@ModelAttribute @Valid UserDto userDto, BindingResult bindingResult){
 
        /* try{
             userService.loginAvailability(userDto);

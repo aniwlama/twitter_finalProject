@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     Optional<Post> findPostByUserAndCreateDate(User user, Date createDate);
+    Optional<Post> findPostByPostId(int postId);
 
 
 }

@@ -25,18 +25,24 @@
     </thead>
 
     <tbody>
-    <tr th:each="post: ${allPosts}">
-
+    <tr th:each="post: ${allPosts}" th:if="${post.deleteDate == null}">
+        <form th:action="@{deletepost}" method="post" th:object="${post}">
             <td th:text="${post.user.login}"></td> <!--musza sie nazwy zgadzac! bo inaczej mapper swiruje-->
             <td th:text="${post.createDate}"></td>
             <td th:text="${post.text}"></td>
+            <td>
+                <input type="hidden" name="postId" th:value="${post.postId}"/>
+                <button value="remove">Remove post</button>
+            </td>
 
-
-
-
-        <form action="#" method="post" th:object="${post}">
-            <td><button value="remove">Remove post</button></td>
         </form>
+
+
+
+
+       <!-- <form action="#" method="post" th:object="${post}">
+            <td><button value="remove">Remove post</button></td>
+        </form>-->
         <form action="#" method="post" th:object="${post}">
             <td>
                 <button value="save">Modify post</button>
